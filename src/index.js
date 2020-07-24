@@ -1,25 +1,15 @@
 import store from "./store";
+import { bugAdded, bugResolved } from "./actions";
 
-const unsubscribe = store.subscribe(() => {
-  console.log(
-    "Store changed! (This is where react re-renders UI)",
-    store.getState()
-  );
-});
+// const unsubscribe = store.subscribe(() => {
+//   console.log(
+//     "Store changed! (This is where react re-renders UI)",
+//     store.getState()
+//   );
+// });
 
-store.dispatch({
-  type: "bugAdded",
-  payload: {
-    description: "Bug1",
-  },
-});
+store.dispatch(bugAdded("Bug 1"));
 
-unsubscribe();
+store.dispatch(bugResolved(1));
 
-store.dispatch({
-  type: "bugRemoved",
-  payload: {
-    id: 1,
-  },
-});
 console.log(store.getState());
